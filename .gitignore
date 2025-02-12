@@ -1,0 +1,31 @@
+# 编译生成的文件
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+*.war
+*.ear
+*.scssc
+
+# ant output folder
+build
+
+# maven output folder
+/target
+
+# gradle output folder
+.gradle
+
+# Intellij IDEA config
+.idea
+*.iml
+/out
+/classes
+
+# Eclipse config
+.classpath
+.project
+.settings
+/bin
+
+# icon cache
+.DS_Store

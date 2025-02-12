@@ -1,0 +1,93 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'org.jreleaser' version '1.16.0'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withJavadocJar()
+    withSourcesJar()
+}
+
+dependencies {
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.11.4')
+    testImplementation('org.junit.jupiter:junit-jupiter-params:5.11.4')
+    testImplementation('org.junit.jupiter:junit-jupiter-engine:5.11.4')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = project.group
+            artifactId = project.name
+
+            from components.java
+
+            pom {
+                name = 'app'
+                description = 'Sample application'
+                url = 'https://github.com/shawyeok/app'
+                inceptionYear = '2024'
+                licenses {
+                    license {
+                        name = 'MIT'
+                        url = 'https://spdx.org/licenses/MIT.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'shawyeok'
+                        name = 'Yike Xiao'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/aalmiray/app.git'
+                    developerConnection = 'scm:git:ssh://github.com/aalmiray/app.git'
+                    url = 'http://github.com/aalmiray/app'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url = layout.buildDirectory.dir('staging-deploy')
+        }
+    }
+}
+
+jreleaser {
+    signing {
+        active = 'ALWAYS'
+        armored = true
+    }
+    deploy {
+        maven {
+            nexus2 {
+                'maven-central' {
+                    active = 'ALWAYS'
+                    url = 'https://s01.oss.sonatype.org/service/local'
+                    snapshotUrl = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+                    closeRepository = true
+                    releaseRepository = true
+                    stagingRepository('build/staging-deploy')
+                }
+            }
+            /* Portal Publisher API
+            mavenCentral {
+                sonatype {
+                    active = 'ALWAYS'
+                    url = 'https://central.sonatype.com/api/v1/publisher'
+                    stagingRepository('target/staging-deploy')
+                }
+            }
+            */
+        }
+    }
+}
