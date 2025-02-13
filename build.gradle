@@ -1,14 +1,13 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
     id 'java-library'
-    id 'maven-publish'
-    id 'org.jreleaser' version '1.16.0'
+    id "com.vanniktech.maven.publish" version "0.30.0"
 }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
-    withJavadocJar()
-    withSourcesJar()
 }
 
 dependencies {
@@ -21,73 +20,35 @@ test {
     useJUnitPlatform()
 }
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = project.group
-            artifactId = project.name
+mavenPublishing {
+    coordinates("io.github.shawyeok", "chinese-workday-calendar", project.version)
 
-            from components.java
-
-            pom {
-                name = 'chinese-workday-calendar'
-                description = 'Chinese Workday Calendar'
-                url = 'https://github.com/shawyeok/chinese-workday-calendar'
-                inceptionYear = '2024'
-                licenses {
-                    license {
-                        name = 'MIT'
-                        url = 'https://spdx.org/licenses/MIT.html'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'shawyeok'
-                        name = 'Yike Xiao'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:https://github.com/shawyeok/chinese-workday-calendar.git'
-                    developerConnection = 'scm:git:ssh://github.com/shawyeok/chinese-workday-calendar.git'
-                    url = 'http://github.com/shawyeok/chinese-workday-calendar'
-                }
+    pom {
+        name = 'chinese-workday-calendar'
+        description = 'Chinese Workday Calendar'
+        url = 'https://github.com/shawyeok/chinese-workday-calendar'
+        inceptionYear = '2024'
+        licenses {
+            license {
+                name = 'MIT'
+                url = 'https://spdx.org/licenses/MIT.html'
             }
+        }
+        developers {
+            developer {
+                id = 'shawyeok'
+                name = 'Yike Xiao'
+                url = 'https://github.com/shawyeok'
+            }
+        }
+        scm {
+            connection = 'scm:git:https://github.com/shawyeok/chinese-workday-calendar.git'
+            developerConnection = 'scm:git:ssh://github.com/shawyeok/chinese-workday-calendar.git'
+            url = 'http://github.com/shawyeok/chinese-workday-calendar'
         }
     }
 
-    repositories {
-        maven {
-            url = layout.buildDirectory.dir('staging-deploy')
-        }
-    }
-}
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-jreleaser {
-    signing {
-        active = 'ALWAYS'
-        armored = true
-    }
-    deploy {
-        maven {
-            nexus2 {
-                'maven-central' {
-                    active = 'ALWAYS'
-                    url = 'https://s01.oss.sonatype.org/service/local'
-                    snapshotUrl = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
-                    closeRepository = true
-                    releaseRepository = true
-                    stagingRepository('build/staging-deploy')
-                }
-            }
-            /* Portal Publisher API
-            mavenCentral {
-                sonatype {
-                    active = 'ALWAYS'
-                    url = 'https://central.sonatype.com/api/v1/publisher'
-                    stagingRepository('target/staging-deploy')
-                }
-            }
-            */
-        }
-    }
+    signAllPublications()
 }
