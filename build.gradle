@@ -30,9 +30,9 @@ publishing {
             from components.java
 
             pom {
-                name = 'app'
-                description = 'Sample application'
-                url = 'https://github.com/shawyeok/app'
+                name = 'chinese-workday-calendar'
+                description = 'Chinese Workday Calendar'
+                url = 'https://github.com/shawyeok/chinese-workday-calendar'
                 inceptionYear = '2024'
                 licenses {
                     license {
@@ -47,9 +47,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = 'scm:git:https://github.com/aalmiray/app.git'
-                    developerConnection = 'scm:git:ssh://github.com/aalmiray/app.git'
-                    url = 'http://github.com/aalmiray/app'
+                    connection = 'scm:git:https://github.com/shawyeok/chinese-workday-calendar.git'
+                    developerConnection = 'scm:git:ssh://github.com/shawyeok/chinese-workday-calendar.git'
+                    url = 'http://github.com/shawyeok/chinese-workday-calendar'
                 }
             }
         }
