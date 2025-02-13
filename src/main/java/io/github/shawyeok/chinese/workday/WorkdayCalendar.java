@@ -78,7 +78,8 @@ public class WorkdayCalendar {
 
         public static final String DEFAULT_LOCAL_CALENDAR_RESOURCE = "workday/years.properties";
 
-        public static final String DEFAULT_REMOTE_CALENDAR_URL = "https://raw.githubusercontent.com/shawyeok/chinese-workday/master/years.properties";
+        public static final String DEFAULT_REMOTE_CALENDAR_URL =
+                "https://chinese-workday-calendar.aops.io/years.properties";
 
         String localCalendarResource = DEFAULT_LOCAL_CALENDAR_RESOURCE;
 

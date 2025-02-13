@@ -65,6 +65,7 @@ class RemoteCalendar implements Calendar {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setConnectTimeout(3000);
             connection.setReadTimeout(10000);
+            connection.setRequestProperty("User-Agent", "Chinese-Workday-Calendar");
             connection.connect();
             try (InputStream inputStream = connection.getInputStream()) {
                 Properties props = new Properties();
