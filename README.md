@@ -75,14 +75,14 @@ calendar.nextWorkday(LocalDate.now());
 关于组件版本号的说明:
 - `2025.x.y`表示2025年的节假日数据已经包含在组件中，不需要访问远程地址。
 
+## Chart
+
+![Chart](doc/chart.svg)
+
+See the details: https://observablehq.com/d/5624093ac436f7ce 
+
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Copyright (C) 2024 Yike Xiao
 
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request on GitHub.
-
-## Contact
-
-For any inquiries, please contact [Yike Xiao](https://github.com/shawyeok).
+Licensed under the MIT License
