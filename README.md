@@ -77,7 +77,7 @@ calendar.nextWorkday(LocalDate.now());
 
 ## Chart
 
-![Chart](doc/chart.svg)
+![Chart](doc/chart.png)
 
 See the details: https://observablehq.com/d/5624093ac436f7ce 
 
