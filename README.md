@@ -1,5 +1,7 @@
 # 中国工作日历
 
+中国工作日历是一个判断指定日期或时间是否为中国官方工作日的Java库。无额外依赖，支持每年的节假日数据自动更新，无需每年升级组件版本。
+
 Chinese Workday Calendar is a Java library that provides functionality to determine workdays and holidays in the Chinese calendar.
 
 ## Features
@@ -14,7 +16,7 @@ Chinese Workday Calendar is a Java library that provides functionality to determ
 
 ```groovy
 dependencies {
-    implementation 'io.github.shawyeok:chinese-workday-calendar:2025.0.0'
+    implementation 'io.github.shawyeok:chinese-workday-calendar:2026.0.0'
 }
 ```
 
@@ -24,7 +26,7 @@ dependencies {
 <dependency>
     <groupId>io.github.shawyeok</groupId>
     <artifactId>chinese-workday-calendar</artifactId>
-    <version>2025.0.0</version>
+    <version>2026.0.0</version>
 </dependency>
 ```
 
@@ -53,7 +55,7 @@ public class QuickStart {
 // 使用默认配置（支持下一年的节假日数据自动更新）
 WorkdayCalendar calendar = WorkdayCalendar.builder().build();
 
-// 自定义远程更新地址, 用户后续只需要每年维护一次该文件即可
+// 自定义远程更新地址, 用于互联网访问受限的场景。由用户提供一个静态文件地址，后续只需要每年维护一次该文件内容即可
 WorkdayCalendar calendar = WorkdayCalendar.builder()
     .remoteCalendarUrl("https://example.com/workday.properties")
     .build();
@@ -79,7 +81,11 @@ calendar.nextWorkday(LocalDate.now());
 
 ![Chart](doc/chart.png)
 
-See the details: https://observablehq.com/d/5624093ac436f7ce 
+See the details: https://observablehq.com/d/5624093ac436f7ce
+
+## Credit
+
+本项目生成最初数据时使用了[chinese-calendar](https://github.com/LKI/chinese-calendar)包。
 
 ## License
 
